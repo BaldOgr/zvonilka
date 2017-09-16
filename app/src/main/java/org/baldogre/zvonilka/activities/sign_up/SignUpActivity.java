@@ -1,9 +1,8 @@
 package org.baldogre.zvonilka.activities.sign_up;
 
 import android.app.ProgressDialog;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 
 import org.baldogre.zvonilka.R;
-import org.baldogre.zvonilka.activities.login.LoginView;
 
 public class SignUpActivity extends MvpActivity<SignUpView, SignUpPresenter> implements SignUpView {
     EditText mEmail;
@@ -34,7 +32,7 @@ public class SignUpActivity extends MvpActivity<SignUpView, SignUpPresenter> imp
 
     private void initUi() {
         progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage(getString(R.string.loading));
         progressDialog.setCancelable(false);
         mEmail = (EditText) findViewById(R.id.sign_up_email);
         mPassword = (EditText) findViewById(R.id.sign_up_password);

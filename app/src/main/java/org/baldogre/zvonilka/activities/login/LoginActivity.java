@@ -4,6 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +16,7 @@ import com.backendless.Backendless;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 
 import org.baldogre.zvonilka.R;
+import org.baldogre.zvonilka.activities.main.MainActivity;
 import org.baldogre.zvonilka.activities.sign_up.SignUpActivity;
 import org.baldogre.zvonilka.entity.crud.common.Defaults;
 
@@ -27,7 +31,7 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Backendless.initApp(getApplicationContext(), Defaults.APPLICATION_ID, Defaults.API_KEY);
+        Backendless.initApp(getApplicationContext(), Defaults.APPLICATION_ID, Defaults.API_KEY);    // TODO login if has current
         initUi();
 
         mLogin.setOnClickListener(new View.OnClickListener() {
@@ -43,7 +47,8 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
         mPassword = (EditText) findViewById(R.id.password);
         mLogin = (Button) findViewById(R.id.email_sign_in_button);
         mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage("Loading...");
+        mProgressDialog.setMessage(getString(R.string.loading));
+
 
         findViewById(R.id.email_sign_up_button).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,5 +89,10 @@ public class LoginActivity extends MvpActivity<LoginView, LoginPresenter> implem
     public void showPasswordError() {
         mPassword.setError("Password length must be greater than 5");
         mPassword.requestFocus();
+    }
+
+    @Override
+    public void onLogin() {
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 }

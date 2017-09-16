@@ -13,4 +13,6 @@ public interface LoginView extends MvpView {
     void showEmailError();
 
     void showPasswordError();
+
+    void onLogin();
 }

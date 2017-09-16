@@ -37,7 +37,7 @@ public class LoginTask extends AsyncTask<Integer, Integer, BackendlessException>
         try {
             Log.i("LoginTask", login);
             Log.i("LoginTask", password);
-            Backendless.UserService.login(login, password);
+            Backendless.UserService.login(login, password, true);
         } catch (BackendlessException ex) {
             Log.i("LoginTask", ex.getCode());
             Log.i("LoginTask", ex.getMessage());
